@@ -50,14 +50,15 @@ importing unused logic. The individual solvers are named for the inputs they
 expect, and packaged into submodules named for the shape of the specification,
 as follows:
 
-- `triangle-completion-aas`: Angle-Angle-Side, `solve_gamma_alpha_c({ gamma: 20, alpha: 80, C: 3 })`
-- `triangle-completion-asa`: Angle-Side-Angle, `solve_alpha_b_gamma({ alpha: 80, B: 3, gamma: 20 })`
-- `triangle-completion-sas`: Side-Angle-Side, `solve_a_gamma_b({ A: 1, gamma: 20, B: 3 })`
-- `triangle-completion-ssa`: Side-Side-Angle, `solve_a_b_alpha({ A: 1, B: 3, alpha: 40 })`
-- `triangle-completion-sss`: Side-Side-Side, `solve_a_b_c({ A: 1, B: 3, C: 5 })`
+- `@stevework/triangle-completion-aas`: Angle-Angle-Side, `solve_gamma_alpha_c({ gamma: 20, alpha: 80, C: 3 })`
+- `@stevework/triangle-completion-asa`: Angle-Side-Angle, `solve_alpha_b_gamma({ alpha: 80, B: 3, gamma: 20 })`
+- `@stevework/triangle-completion-sas`: Side-Angle-Side, `solve_a_gamma_b({ A: 1, gamma: 20, B: 3 })`
+- `@stevework/triangle-completion-ssa`: Side-Side-Angle, `solve_a_b_alpha({ A: 1, B: 3, alpha: 40 })`
+- `@stevework/triangle-completion-sss`: Side-Side-Side, `solve_a_b_c({ A: 1, B: 3, C: 5 })`
 
-There are also some trivial support functions in `triangle-completion-common`,
-but it's unlikely they'll be of interest on their own.
+There are also some trivial support functions in
+`@stevework/triangle-completion-common`, but it's unlikely they'll be of
+interest on their own.
 
 ## Contributing
 Zero optimization of code for performance, have at it:

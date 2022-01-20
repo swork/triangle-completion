@@ -2,7 +2,12 @@
     "name": "@stevework/triangle-completion-common",
     "version": "0.8.9",
     "description": "triangle-completion's common elements",
-    "main": "../../dist/common.js",
+    "main": "./common.js",
+    "scripts": {
+        "build": "cp ../../dist/common.js ../../README.md .",
+        "prepublish": "npm run build",
+        "test": "echo Test at top level."
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/swork/triangle-completion.git"

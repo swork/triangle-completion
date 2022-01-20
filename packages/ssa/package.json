@@ -1,16 +1,21 @@
 {
-  "name": "@stevework/triangle-completion-ssa",
-  "version": "0.8.9",
-  "description": "triangle-completion's SSA triangle calculator",
-  "main": "../../dist/ssa.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/swork/triangle-completion.git"
-  },
-  "author": "Steve Work <steve@work.renlabs.com>",
-  "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/swork/triangle-completion/issues"
-  },
-  "homepage": "https://github.com/swork/triangle-completion#readme"
+    "name": "@stevework/triangle-completion-ssa",
+    "version": "0.8.9",
+    "description": "triangle-completion's SSA triangle calculator",
+    "main": "./ssa.js",
+    "scripts": {
+        "build": "cp ../../dist/ssa.js ../../README.md .",
+        "prepublish": "npm run build",
+        "test": "echo Test at top level."
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/swork/triangle-completion.git"
+    },
+    "author": "Steve Work <steve@work.renlabs.com>",
+    "license": "BSD-2-Clause",
+    "bugs": {
+        "url": "https://github.com/swork/triangle-completion/issues"
+    },
+    "homepage": "https://github.com/swork/triangle-completion#readme"
 }
