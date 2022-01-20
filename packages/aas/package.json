@@ -1,5 +1,5 @@
 {
-  "name": "@swork/triangle-completion-aas",
+  "name": "@stevework/triangle-completion-aas",
   "version": "0.1.0",
   "description": "triangle-completion's AAS triangle calculator",
   "main": "../../dist/aas.js",

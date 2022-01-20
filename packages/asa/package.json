@@ -1,5 +1,5 @@
 {
-  "name": "@swork/triangle-completion-asa",
+  "name": "@stevework/triangle-completion-asa",
   "version": "0.1.0",
   "description": "triangle-completion's ASA triangle calculator",
   "main": "../../dist/asa.js",

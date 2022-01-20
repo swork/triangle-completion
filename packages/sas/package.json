@@ -1,5 +1,5 @@
 {
-  "name": "@swork/triangle-completion-sas",
+  "name": "@stevework/triangle-completion-sas",
   "version": "0.1.0",
   "description": "triangle-completion's SAS triangle calculator",
   "main": "../../dist/sas.js",

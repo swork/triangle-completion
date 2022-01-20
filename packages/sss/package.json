@@ -1,5 +1,5 @@
 {
-  "name": "@swork/triangle-completion-sss",
+  "name": "@stevework/triangle-completion-sss",
   "version": "0.1.0",
   "description": "triangle-completion's SSS triangle calculator",
   "main": "../../dist/sss.js",
