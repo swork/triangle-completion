@@ -53,8 +53,12 @@ as follows:
 - `@stevework/triangle-completion-aas`: Angle-Angle-Side, `solve_gamma_alpha_c({ gamma: 20, alpha: 80, C: 3 })`
 - `@stevework/triangle-completion-asa`: Angle-Side-Angle, `solve_alpha_b_gamma({ alpha: 80, B: 3, gamma: 20 })`
 - `@stevework/triangle-completion-sas`: Side-Angle-Side, `solve_a_gamma_b({ A: 1, gamma: 20, B: 3 })`
-- `@stevework/triangle-completion-ssa`: Side-Side-Angle, `solve_a_b_alpha({ A: 1, B: 3, alpha: 40 })`
 - `@stevework/triangle-completion-sss`: Side-Side-Side, `solve_a_b_c({ A: 1, B: 3, C: 5 })`
+- `@stevework/triangle-completion-ssa`: Side-Side-Angle, `solve_a_b_alpha({ A: 1, B: 3, alpha: 40 })`
+
+This last is ambiguous if the angle is acute. As shown above, the solution
+includes an "alt" key giving another matching triangle. Nothing determines which
+solution is presented as "alt".
 
 There are also some trivial support functions in
 `@stevework/triangle-completion-common`, but it's unlikely they'll be of
