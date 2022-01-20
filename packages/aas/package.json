@@ -1,6 +1,6 @@
 {
     "name": "@stevework/triangle-completion-aas",
-    "version": "0.8.10",
+    "version": "0.8.12",
     "description": "triangle-completion's AAS triangle calculator",
     "main": "./aas.js",
     "scripts": {

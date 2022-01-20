@@ -1,6 +1,6 @@
 {
     "name": "@stevework/triangle-completion-common",
-    "version": "0.8.11",
+    "version": "0.8.12",
     "description": "triangle-completion's common elements",
     "main": "./common.js",
     "scripts": {
