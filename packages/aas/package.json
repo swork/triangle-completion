@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/swork/triangle-completion.git"
   },
+  "scripts": {
+      test: "echo Test at top level"
+  },
   "author": "Steve Work <steve@work.renlabs.com>",
   "license": "BSD-2-Clause",
   "bugs": {
