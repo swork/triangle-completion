@@ -1,0 +1,9 @@
+* Procedures
+
+  - Publish
+
+    npm version patch (or whatever)
+    ./verify-subpackage-versions, maybe ./set-subpackage-versions
+    git commit, watch https://app.circleci.com/pipelines/github/swork
+    npm publish --workspaces --include-workspace-root --access=public
+    git push

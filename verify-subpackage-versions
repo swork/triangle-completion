@@ -9,3 +9,4 @@ for pkgdir in packages/* ; do
         exit 1
     fi
 done
+echo ${topversion}
