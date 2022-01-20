@@ -1,0 +1,11 @@
+#! /bin/sh
+
+thisdir=`dirname $0`
+topversion=`jq '.["version"]' < ${thisdir}/package.json`
+for pkgdir in packages/* ; do
+    thisversion=`jq '.["version"]' < ${thisdir}/${pkgdir}/package.json`
+    if [ ${thisversion} != ${topversion} ]; then
+        echo './set-subpackage-versions is required'
+        exit 1
+    fi
+done

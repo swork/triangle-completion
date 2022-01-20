@@ -3,3 +3,4 @@ spec
 webpack.config.js
 .circleci/config.yml
 set-subpackage-versions
+verify-subpackage-versions

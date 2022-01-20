@@ -16,7 +16,7 @@
     "example": "node src/index.js",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
-    "prepublish": "./set-subpackage-versions && rm -rf dist && npm run build"
+    "prepublish": "./verify-subpackage-versions && rm -rf dist && npm run build"
   },
   "repository": {
     "type": "git",
