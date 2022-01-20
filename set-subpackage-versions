@@ -1,0 +1,5 @@
+#! /bin/sh
+
+thisdir=`dirname $0`
+topversion=`jq '.["version"]' < ${thisdir}/package.json`
+npm version --workspaces ${topversion}
