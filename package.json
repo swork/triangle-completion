@@ -1,22 +1,31 @@
 {
   "name": "triangle-completion",
-  "version": "0.8.0",
+  "version": "0.8.7",
   "description": "Calculate a triangle from a partial spec. Basic trig nicely packaged.",
   "main": "./dist/index.js",
+  "workspaces": [
+      "packages/common",
+      "packages/sss",
+      "packages/ssa",
+      "packages/sas",
+      "packages/asa",
+      "packages/aas"
+  ],
   "scripts": {
-      "test": "jasmine",
-      "example": "node src/index.js",
-      "build": "webpack --mode production",
-      "build:dev": "webpack --mode development",
-      "prepublish": "rm -rf dist && npm run build"
+    "test": "jasmine",
+    "example": "node src/index.js",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "prepublish": "rm -rf dist && npm run build"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/swork/triangle-completion.git"
   },
   "keywords": [
-    "trig",
-    "trigonometry"
+      "trigonometry",
+      "trig",
+      "triangles"
   ],
   "author": "Steve Work <steve@work.renlabs.com>",
   "license": "BSD-2-Clause",

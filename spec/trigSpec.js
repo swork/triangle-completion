@@ -1,3 +1,7 @@
+// Test stuff imported from the index.js rollup. There are minimal tests in
+// individual specs for each subset library, just enough to prove the right
+// things are associated with the right names when imported that way.
+
 var trig = require('../dist/index.js');
 var delete_undefs = trig.delete_undefs;
 var mirror_b = trig.mirror_b;

@@ -12,23 +12,35 @@
 // solveTriangle(spec) will return an object (the same object, mutated) with all
 // six parameters specified.
 
-export default solveTriangle;
+import { TriangleError,
+         degreesToRadians,
+         radiansToDegrees,
+         rotate } from './common';
+import { solve_gamma_alpha_c } from './aas';
+import { solve_alpha_b_gamma } from './asa';
+import { solve_a_gamma_b } from './sas';
+import { solve_a_b_alpha } from './ssa';
+import { solve_a_b_c } from './sss';
 
-export class TriangleError extends Error {};
+export {
+    TriangleError,
+    degreesToRadians,
+    radiansToDegrees,
+    rotate,
+    solve_gamma_alpha_c,
+    solve_alpha_b_gamma,
+    solve_a_gamma_b,
+    solve_a_b_alpha,
+    solve_a_b_c
+};
+
+export default solveTriangle;
 
 const have = (ins, key) => {
     if (ins.hasOwnProperty(key) && ins[key] !== undefined) {
         return 1;
     }
     return 0;
-};
-
-const radiansToDegrees = radian => {
-    return 180 * radian / Math.PI;
-};
-
-const degreesToRadians = degree => {
-    return Math.PI * degree / 180;
 };
 
 export function delete_undefs(ins) {
@@ -103,180 +115,6 @@ export function mirror_c(ins) {
     return ins;
 }
 
-// Rotate right (1) or left(-1)
-export function rotate(ins, direction) {
-    let temp;
-    switch (direction) {
-    case 1:
-        temp = ins.gamma;
-        ins.gamma = ins.beta;
-        ins.beta = ins.alpha;
-        ins.alpha = temp;
-        temp = ins.C;
-        ins.C = ins.B;
-        ins.B = ins.A;
-        ins.A = temp;
-        break;
-    case -1:
-        temp = ins.alpha;
-        ins.alpha = ins.beta;
-        ins.beta = ins.gamma;
-        ins.gamma = temp;
-        temp = ins.A;
-        ins.A = ins.B;
-        ins.B = ins.C;
-        ins.C = temp;
-        break;
-    default:
-        throw Error(`Bug: rotate(spec, ${direction})`);
-    }
-    return ins;
-}
-
-// SSS, all non-zero.
-export function solve_a_b_c(ins) {
-    if (ins.A === null || ins.B === null || ins.C === null) {
-        ins.alpha = ins.beta = ins.gamma = null;
-        return ins;
-    }
-    if ( ! (ins.A && ins.B && ins.C)) {
-        throw new TriangleError(`Bad SSS in A:${ins.A}, B:${ins.B}, C:${ins.C}`);
-    }
-    if (ins.gamma === undefined || ins.gamma === null || !isFinite(ins.gamma)) {
-        if (ins.A_squared === undefined) {
-            ins.A_squared = ins.A * ins.A;
-        }
-        if (ins.B_squared === undefined) {
-            ins.B_squared = ins.B * ins.B;
-        }
-        if (ins.C_squared === undefined) {
-            ins.C_squared = ins.C * ins.C;
-        }
-        let cos_gamma = ((ins.A_squared + ins.B_squared) - ins.C_squared) / (2 * ins.A * ins.B);
-        ins.gamma = radiansToDegrees(Math.acos(cos_gamma));
-    }
-    return solve_a_gamma_b(ins);
-}
-
-// SAS
-export function solve_a_gamma_b(ins) {
-    if (ins.A === null || ins.gamma === null || ins.B === null) {
-        ins.alpha = ins.beta = ins.C = null;
-        return ins;
-    }
-    if ( !(ins.A && ins.gamma && ins.B)) {
-        throw new TriangleError(`Bad SAS in A:${ins.A}, gamma:${ins.gamma}, B:${ins.B}`);
-    }
-    if (ins.A_squared === undefined) {
-        ins.A_squared = ins.A * ins.A;
-    }
-    if (ins.B_squared === undefined) {
-        ins.B_squared = ins.B * ins.B;
-    }
-    if (ins.C_squared === undefined) {
-        let gamma_radians = Math.PI * ins.gamma / 180;
-        ins.C_squared = ins.A_squared + ins.B_squared - (2 * ins.A * ins.B * Math.cos(gamma_radians));
-    }
-    if (ins.C === undefined || !isFinite(ins.C)) {
-        ins.C = Math.sqrt(ins.C_squared);
-    }
-    if (ins.alpha === undefined || !isFinite(ins.alpha)) {
-        if (ins.beta) {
-            ins.alpha = 180 - (ins.alpha + ins.beta);
-        } else {
-            let cos_alpha = ((ins.B_squared + ins.C_squared) - ins.A_squared) / (2 * ins.B * ins.C);
-            ins.alpha = radiansToDegrees(Math.acos(cos_alpha));
-        }
-    }
-    if (ins.beta === undefined || !isFinite(ins.beta)) {
-        ins.beta = 180 - (ins.alpha + ins.gamma);
-    }
-    return ins;
-}
-
-// ASA
-export function solve_alpha_b_gamma(ins) {
-    if (ins.alpha === null || ins.B === null || ins.gamma === null) {
-        ins.A = ins.beta = ins.C = null;
-        return ins;
-    }
-    if ( !(ins.alpha && ins.B && ins.gamma)) {
-        throw new TriangleError(`Bad ASA in alpha:${ins.alpha}, B:${ins.B}, gamma:${ins.gamma}`);
-    }
-    let known_a_sum = ins.alpha + ins.gamma;
-    if (known_a_sum >= 180) {
-        throw new TriangleError(`Not a triangle ${JSON.stringify(ins)}`);
-    }
-    ins.beta = 180 - known_a_sum;
-    let sin_gamma = Math.sin(degreesToRadians(ins.gamma));
-    ins.C = (ins.B * sin_gamma) / Math.sin(degreesToRadians(ins.beta));
-    ins.A = (ins.C * Math.sin(degreesToRadians(ins.alpha))) / sin_gamma;
-    return ins;
-}
-
-// AAS
-export function solve_gamma_alpha_c(ins) {
-    if (ins.gamma === null || ins.alpha === null || ins.C === null) {
-        ins.beta = ins.A = ins.B = null;
-        return ins;
-    }
-    if ( !(ins.gamma && ins.alpha && ins.C)) {
-        throw new TriangleError(`Bad AAS in gamma:${ins.gamma}, alpha:${ins.alpha}, C:${ins.C}`);
-    }
-    let known_a_sum = ins.alpha + ins.gamma;
-    if (known_a_sum >= 180) {
-        throw new TriangleError(`Not a triangle ${JSON.stringify(ins)}`);
-    }
-    ins.beta = 180 - known_a_sum;
-    let sin_gamma = Math.sin(degreesToRadians(ins.gamma));
-    ins.A = (ins.C * Math.sin(degreesToRadians(ins.alpha))) / sin_gamma;
-    ins.B = (ins.C * Math.sin(degreesToRadians(ins.beta))) / sin_gamma;
-    return ins;
-}
-
-// SSA can have two solutions
-export function solve_a_b_alpha(ins, skip_alt) {
-    if (ins.A === null || ins.B === null || ins.alpha === null) {
-        ins.C = ins.beta = ins.gamma = null;
-        return ins;
-    }
-    if ( !(ins.A && ins.B && ins.alpha)) {
-        throw new TriangleError(`Bad SSA in A:${ins.A}, B:${ins.B}, alpha:${ins.alpha}`);
-    }
-    let sin_alpha = Math.sin(degreesToRadians(ins.alpha));
-    ins.beta = radiansToDegrees(Math.asin((ins.B * sin_alpha) / ins.A));
-    ins.gamma = 180 - (ins.alpha + ins.beta);
-    ins.C = (ins.B * Math.sin(degreesToRadians(ins.gamma))) / Math.sin(degreesToRadians(ins.beta));
-    if (skip_alt === undefined && (ins.alpha > 90 || ins.beta > 90 || ins.gamma > 90)) {
-        ins.alt = {...ins};
-        if (ins.alpha > 90) {
-            let diff = ins.alpha - 90;
-            ins.alpha = 90 - diff;
-            delete ins.C;
-            delete ins.beta;
-            delete ins.gamma;
-            return solve_a_b_alpha(ins, true);
-        } else if (ins.beta > 90) {
-            let diff = ins.beta - 90;
-            ins.beta = 90 - diff;
-            delete ins.A;
-            delete ins.alpha;
-            delete ins.gamma;
-            return rotate(solve_a_b_alpha(rotate(ins, -1), true), 1);
-        } else {
-            let diff = ins.gamma - 90;
-            ins.gamma = 90 - diff;
-            delete ins.B;
-            delete ins.alpha;
-            delete ins.beta;
-            return rotate(solve_a_b_alpha(rotate(ins, 1), true), -1);
-        }
-    } else {
-        return solve_a_gamma_b(ins);
-    }
-}
-
-
 export function solveTriangle(ins) {
     // Here the triangle is sides A, B, C opposite angles alpha, beta, gamma.
     let sides_count = have(ins, 'A') + have(ins, 'B') + have(ins, 'C');
@@ -339,4 +177,3 @@ export function solveTriangle(ins) {
     }
     throw new TriangleError(`Underspec'd: ${JSON.stringify(ins)}`);
 }
-

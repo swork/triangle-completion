@@ -1,0 +1,16 @@
+{
+    "name": "@swork/triangle-completion-common",
+    "version": "0.1.0",
+    "description": "triangle-completion's common elements",
+    "main": "../../dist/common.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/swork/triangle-completion.git"
+    },
+    "author": "Steve Work <steve@work.renlabs.com>",
+    "license": "BSD-2-Clause",
+    "bugs": {
+        "url": "https://github.com/swork/triangle-completion/issues"
+    },
+    "homepage": "https://github.com/swork/triangle-completion#readme"
+}

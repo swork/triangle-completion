@@ -1,2 +1,4 @@
 src
 spec
+webpack.config.js
+.circleci/config.yml
