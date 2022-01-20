@@ -33,7 +33,7 @@ console.log(solveTriangle({ A:1, C:2, alpha: 10 }));
 ```
 
 Specifications use `alpha`, `beta`, `gamma` for angles and `A`, `B`, `C` for the
-corresponding opposite sides. As shown, an SSA spec involving an obtuse angle
+corresponding opposite sides. As shown, an SSA spec involving an acute angle
 generates both possible solutions.
 
 Invalid inputs (zero/NaN/undefined, or unsolvable specifications) throw
