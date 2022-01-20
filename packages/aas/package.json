@@ -1,6 +1,6 @@
 {
   "name": "@stevework/triangle-completion-aas",
-  "version": "0.1.0",
+  "version": "0.8.8",
   "description": "triangle-completion's AAS triangle calculator",
   "main": "../../dist/aas.js",
   "repository": {
@@ -8,7 +8,7 @@
     "url": "git+https://github.com/swork/triangle-completion.git"
   },
   "scripts": {
-      "test": "echo Test at top level"
+    "test": "echo Test at top level"
   },
   "author": "Steve Work <steve@work.renlabs.com>",
   "license": "BSD-2-Clause",
