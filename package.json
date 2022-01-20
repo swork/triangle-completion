@@ -1,6 +1,6 @@
 {
   "name": "triangle-completion",
-  "version": "0.8.9",
+  "version": "0.8.10",
   "description": "Calculate a triangle from a partial spec. Basic trig nicely packaged.",
   "main": "./dist/index.js",
   "workspaces": [
