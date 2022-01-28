@@ -1,6 +1,6 @@
 {
     "name": "@stevework/triangle-completion-ssa",
-    "version": "0.8.12",
+    "version": "0.9.0",
     "description": "triangle-completion's SSA triangle calculator",
     "main": "./ssa.js",
     "scripts": {
