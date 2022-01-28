@@ -1,18 +1,18 @@
-let ssa = require('../dist/ssa');
-let solve_a_b_alpha = ssa.solve_a_b_alpha;
+const ssa = require('../dist/ssa')
+const solveABAlpha = ssa.solveABAlpha
 
-describe('solve_a_b_alpha', () => {
-    it('is a function', () => {
-        expect(typeof solve_a_b_alpha).toBe('function');
-    });
+describe('solveABAlpha', () => {
+  it('is a function', () => {
+    expect(typeof solveABAlpha).toBe('function')
+  })
 
-    it('throws on any value missing', () => {
-        expect(() => { solve_a_b_alpha({ }); }).toThrow();
-        expect(() => { solve_a_b_alpha({ A:1 }); }).toThrow();
-        expect(() => { solve_a_b_alpha({ B:1 }); }).toThrow();
-        expect(() => { solve_a_b_alpha({ alpha:1 }); }).toThrow();
-        expect(() => { solve_a_b_alpha({ A:1, B:3 }); }).toThrow();
-        expect(() => { solve_a_b_alpha({ B:3, alpha: 2 }); }).toThrow();
-        expect(() => { solve_a_b_alpha({ A:1, alpha:2 }); }).toThrow();
-    });
-});
+  it('throws on any value missing', () => {
+    expect(() => { solveABAlpha({ }) }).toThrow()
+    expect(() => { solveABAlpha({ A: 1 }) }).toThrow()
+    expect(() => { solveABAlpha({ B: 1 }) }).toThrow()
+    expect(() => { solveABAlpha({ alpha: 1 }) }).toThrow()
+    expect(() => { solveABAlpha({ A: 1, B: 3 }) }).toThrow()
+    expect(() => { solveABAlpha({ B: 3, alpha: 2 }) }).toThrow()
+    expect(() => { solveABAlpha({ A: 1, alpha: 2 }) }).toThrow()
+  })
+})

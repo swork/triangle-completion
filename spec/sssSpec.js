@@ -1,18 +1,18 @@
-var sss = require('../dist/sss');
-var solve_a_b_c = sss.solve_a_b_c;
+const sss = require('../dist/sss')
+const solveABC = sss.solveABC
 
-describe('solve_a_b_c', () => {
-    it('is a function', () => {
-        expect(typeof solve_a_b_c).toBe('function');
-    });
+describe('solveABC', () => {
+  it('is a function', () => {
+    expect(typeof solveABC).toBe('function')
+  })
 
-    it('throws on any value missing', () => {
-        expect(() => { solve_a_b_c({ }); }).toThrow();
-        expect(() => { solve_a_b_c({ A:1 }); }).toThrow();
-        expect(() => { solve_a_b_c({ B:1 }); }).toThrow();
-        expect(() => { solve_a_b_c({ C:1 }); }).toThrow();
-        expect(() => { solve_a_b_c({ A:1, B:2 }); }).toThrow();
-        expect(() => { solve_a_b_c({ B:2, C:3 }); }).toThrow();
-        expect(() => { solve_a_b_c({ A:1, C:3 }); }).toThrow();
-    });
-});
+  it('throws on any value missing', () => {
+    expect(() => { solveABC({ }) }).toThrow()
+    expect(() => { solveABC({ A: 1 }) }).toThrow()
+    expect(() => { solveABC({ B: 1 }) }).toThrow()
+    expect(() => { solveABC({ C: 1 }) }).toThrow()
+    expect(() => { solveABC({ A: 1, B: 2 }) }).toThrow()
+    expect(() => { solveABC({ B: 2, C: 3 }) }).toThrow()
+    expect(() => { solveABC({ A: 1, C: 3 }) }).toThrow()
+  })
+})

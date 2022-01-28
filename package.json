@@ -12,7 +12,7 @@
     "packages/aas"
   ],
   "scripts": {
-    "test": "jasmine",
+    "test": "standard src && jasmine",
     "example": "node src/index.js",
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
@@ -37,6 +37,7 @@
     "@babel/core": "^7.16.7",
     "babel-loader": "^8.2.3",
     "jasmine": "^4.0.2",
+    "standard": "github:standard/standard",
     "webpack": "^5.66.0",
     "webpack-cli": "^4.9.1"
   }
