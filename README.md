@@ -3,7 +3,7 @@ Calc a triangle from a partial spec. Basic trig nicely packaged.
 
 ## Usage
 ```
-import { solveTriangle, TriangleError } from 'trig';
+import solveTriangle, { TriangleError } from 'trig';
 console.log(solveTriangle({ alpha:60, beta: 30, B: 1 }));
 {
   alpha: 60,
@@ -37,32 +37,30 @@ corresponding opposite sides. As shown, an SSA spec involving an acute angle
 generates both possible solutions.
 
 Invalid inputs (zero/NaN/undefined, or unsolvable specifications) throw
-`TriangleError`, trivially derived from `Error`. `null` inputs propogate to the output without throwing an
-error.
+`TriangleError`, trivially derived from `Error`. `null` inputs propogate to the
+output without throwing an error.
 
 ## Optimizing
 
 solveTriangle analyzes and mutates the input spec to match up with one of
-several solver functions. You can call these solver functions directly, saving
-both the cost of the analysis (for sure a few conditional evaluations and likely
-a few rotate/invert object manipulations) and the cost in time and space of
-importing unused logic. The individual solvers are named for the inputs they
-expect, and packaged into submodules named for the shape of the specification,
-as follows:
+several solver functions. You can import and invoke these solver functions
+directly, saving both the cost of the analysis (for sure a few conditional
+evaluations and likely a few rotate/invert object manipulations) and the cost in
+time and space of importing unused logic. The individual solvers are named for
+the inputs they expect as follows:
 
-- `@stevework/triangle-completion-aas`: Angle-Angle-Side, `solve_gamma_alpha_c({ gamma: 20, alpha: 80, C: 3 })`
-- `@stevework/triangle-completion-asa`: Angle-Side-Angle, `solve_alpha_b_gamma({ alpha: 80, B: 3, gamma: 20 })`
-- `@stevework/triangle-completion-sas`: Side-Angle-Side, `solve_a_gamma_b({ A: 1, gamma: 20, B: 3 })`
-- `@stevework/triangle-completion-sss`: Side-Side-Side, `solve_a_b_c({ A: 1, B: 3, C: 5 })`
-- `@stevework/triangle-completion-ssa`: Side-Side-Angle, `solve_a_b_alpha({ A: 1, B: 3, alpha: 40 })`
+- Angle-Angle-Side: aas.js `solveGammaAlphaC({ gamma: 20, alpha: 80, C: 3 })`
+- Angle-Side-Angle: asa.js `solveAlphaBGamma({ alpha: 80, B: 3, gamma: 20 })`
+- Side-Angle-Side: sas.js `solveAGammaB({ A: 1, gamma: 20, B: 3 })`
+- Side-Side-Side: sss.js `solveABC({ A: 1, B: 3, C: 5 })`
+- Side-Side-Angle: ssa.js `solveABAlpha({ A: 1, B: 3, alpha: 40 })`
 
 This last is ambiguous if the angle is acute. As shown above, the solution
 includes an "alt" key giving another matching triangle. Nothing determines which
 solution is presented as "alt".
 
-There are also some trivial support functions in
-`@stevework/triangle-completion-common`, but it's unlikely they'll be of
-interest on their own.
+There are also some trivial support functions in common.js, but it's unlikely
+they'll be of much interest on their own.
 
 ## Contributing
 Zero optimization of code for performance, have at it:
